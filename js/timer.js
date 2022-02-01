@@ -1,4 +1,4 @@
-let MSK_UTC = 3; // Московское время
+let UTC = 3; // Московское время
 
 // Получаем текущую дату и переводим сразу в указанный часовой пояс (по умолчанию: Москва)
 function getCurrentTime(UTC = 3) {
@@ -31,7 +31,7 @@ function formatTime(hours, minutes, seconds, year = "", month = "", day = "") {
 }
 
 function getDifferenceDate() {         
-    let currentTime = getCurrentTime(MSK_UTC).date,
+    let currentTime = getCurrentTime(UTC).date,
         newDate = new Date(time * 1000),
         diff = Math.abs(Math.floor((newDate - currentTime) / 1000)),
         daysLeft = Math.floor(diff / (24 * 60 * 60)),
@@ -51,9 +51,9 @@ function getDifferenceDate() {
     document.getElementById('timer').innerHTML = text + ": " + daysLeft + "d " + formatTime(hoursLeft, minLeft, secLeft);
 }
 
-let currentDate = new Date(getCurrentTime(MSK_UTC).timestampZone);
+let currentDate = new Date(getCurrentTime(UTC).timestampZone);
 let time = toTimestamp(2022, 2, 1, 17, 5, 0);
-let getDate = new Date((time + (MSK_UTC * 60 * 60)) * 1000);
+let getDate = new Date((time + (UTC * 60 * 60)) * 1000);
 
 document.getElementById('msk').innerHTML = formatTime(currentDate.getUTCHours(), currentDate.getUTCMinutes(), currentDate.getUTCSeconds(), currentDate.getUTCFullYear(), currentDate.getUTCMonth() + 1, currentDate.getUTCDate());
 document.getElementById('custom').innerHTML = formatTime(getDate.getUTCHours(), getDate.getUTCMinutes(), getDate.getUTCSeconds(), getDate.getUTCFullYear(), getDate.getUTCMonth() + 1, getDate.getUTCDate());
